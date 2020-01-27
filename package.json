@@ -9,7 +9,7 @@
     "build": "scripts/build.sh",
     "start": "bin/www",
     "test": "jest",
-    "client:start": "cd client; yarn start"
+    "dev": "nodemon bin/www"
   },
   "dependencies": {
     "compression": "1.7.4",
@@ -32,6 +32,7 @@
     "@types/supertest": "2.0.8",
     "husky": "3.0.3",
     "jest": "24.9.0",
+    "nodemon": "2.0.2",
     "prettier": "1.18.2",
     "pretty-quick": "1.11.1",
     "supertest": "4.0.2",
