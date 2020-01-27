@@ -3,12 +3,10 @@ import express from 'express';
 import cors from 'cors';
 import compression from 'compression';
 import morgan from 'morgan';
-import graphQLHTTP from 'express-graphql';
 import path from 'path';
 import fs from 'fs';
 
 import apiRouter from './routes/index';
-import schema from './schema';
 
 const app = express();
 
@@ -49,14 +47,6 @@ app.use(express.urlencoded({ extended: false }));
 
 app.use('/api', apiRouter);
 
-app.use(
-  '/graphql',
-  graphQLHTTP({
-    schema,
-    graphiql: true,
-  }),
-);
-
 const clientPath = path.join(__dirname, '../', 'client/build');
 
 if (fs.existsSync(clientPath)) {
@@ -83,7 +73,7 @@ app.use(function(err: any, req: express.Request, res: express.Response) {
 
   // render the error page
   res.status(err.status || 500);
-  res.render('error');
+  res.json(err);
 });
 
 export default app;
